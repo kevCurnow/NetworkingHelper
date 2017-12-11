@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,9 @@ namespace NetworkingHelper.Data
     {
         [Key]
         public int ConnectionID { get; set; }
+
+        [Required]
+        public Guid UserID { get; set; }
 
         [Required]
         public string ConnectionName { get; set; }
@@ -32,9 +36,6 @@ namespace NetworkingHelper.Data
 
         [Required]
         public int EventID { get; set; }
-
-        [Required]
-        public Guid UserID { get; set; }
 
         public virtual EventEntity Events { get; set; }
     }

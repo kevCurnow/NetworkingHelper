@@ -13,6 +13,9 @@ namespace NetworkingHelper.Data
         public int EventID { get; set; }
 
         [Required]
+        public Guid UserID { get; set; }
+
+        [Required]
         public string EventName { get; set; }
 
         [Required]
@@ -20,9 +23,6 @@ namespace NetworkingHelper.Data
 
         [Required]
         public string EventLocation { get; set; }
-
-        [Required]
-        public Guid UserID { get; set; }
 
         public virtual ICollection<ConnectionEntity> Connections { get; set; }
     }

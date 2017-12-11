@@ -7,13 +7,13 @@ namespace NetworkingHelper.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class AddedGuid : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedGuid));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712111601571_initial"; }
+            get { return "201712112017032_AddedGuid"; }
         }
         
         string IMigrationMetadata.Source
