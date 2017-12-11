@@ -48,11 +48,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ConnectionModels\ConnectionCreateModel.cs" />
+    <Compile Include="ConnectionModels\ConnectionDetailModel.cs" />
+    <Compile Include="ConnectionModels\ConnectionEditModel.cs" />
+    <Compile Include="ConnectionModels\ConnectionListModel.cs" />
+    <Compile Include="EventModels\EventCreateModel.cs" />
+    <Compile Include="EventModels\EventDetailModel.cs" />
+    <Compile Include="EventModels\EventEditModel.cs" />
+    <Compile Include="EventModels\EventListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
