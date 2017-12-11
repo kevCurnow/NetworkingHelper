@@ -22,7 +22,7 @@ namespace NetworkingHelper.Data
         public string EventLocation { get; set; }
 
         [Required]
-        public int UserID { get; set; }
+        public Guid UserID { get; set; }
 
         public virtual ICollection<ConnectionEntity> Connections { get; set; }
     }

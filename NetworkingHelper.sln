@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkingHelper.Contracts"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkingHelper.Models", "NetworkingHelper.Models\NetworkingHelper.Models.csproj", "{7744DFDD-28BF-4358-BE27-6C50EB833D09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkingHelper.Service", "NetworkingHelper.Service\NetworkingHelper.Service.csproj", "{9DB8898E-2A2D-43B6-8C8D-C9AFD7BE36CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkingHelper.Services", "NetworkingHelper.Service\NetworkingHelper.Services.csproj", "{9DB8898E-2A2D-43B6-8C8D-C9AFD7BE36CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkingHelper.SQL", "NetworkingHelper.SQL\NetworkingHelper.SQL.csproj", "{B325FA7D-353B-4FC2-B25A-30C551B68317}"
 EndProject

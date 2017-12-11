@@ -33,6 +33,9 @@ namespace NetworkingHelper.Data
         [Required]
         public int EventID { get; set; }
 
+        [Required]
+        public Guid UserID { get; set; }
+
         public virtual EventEntity Events { get; set; }
     }
 }
