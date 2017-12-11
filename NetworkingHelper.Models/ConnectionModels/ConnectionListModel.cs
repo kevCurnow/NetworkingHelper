@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetworkingHelper.Models.ConnectionModels
 {
-    public class ConnectionListItemModel
+    public class ConnectionListModel
     {
         public int ConnectionID { get; set; }
         public string ConnectionName { get; set; }
