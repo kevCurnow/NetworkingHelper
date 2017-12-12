@@ -190,6 +190,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ConnectionController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -255,6 +257,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Connection\Create.cshtml" />
+    <Content Include="Views\Connection\Delete.cshtml" />
+    <Content Include="Views\Connection\Details.cshtml" />
+    <Content Include="Views\Connection\Edit.cshtml" />
+    <Content Include="Views\Connection\Index.cshtml" />
+    <Content Include="Views\Event\Create.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,9 +285,21 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NetworkingHelper.Contracts\NetworkingHelper.Contracts.csproj">
+      <Project>{8d614785-c148-4d9e-a86d-1181709d71c6}</Project>
+      <Name>NetworkingHelper.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NetworkingHelper.Data\NetworkingHelper.Data.csproj">
       <Project>{5103B0C0-F672-4481-835C-1104E9A85298}</Project>
       <Name>NetworkingHelper.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkingHelper.Models\NetworkingHelper.Models.csproj">
+      <Project>{7744dfdd-28bf-4358-be27-6c50eb833d09}</Project>
+      <Name>NetworkingHelper.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkingHelper.Service\NetworkingHelper.Services.csproj">
+      <Project>{9db8898e-2a2d-43b6-8c8d-c9afd7be36cb}</Project>
+      <Name>NetworkingHelper.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

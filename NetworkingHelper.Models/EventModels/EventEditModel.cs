@@ -17,5 +17,7 @@ namespace NetworkingHelper.Models.EventModels
 
         [Required]
         public string EventLocation { get; set; }
+
+        public int EventID { get; set; }
     }
 }
