@@ -40,24 +40,85 @@ namespace NetworkingHelper.Services
             }
         }
 
-        public bool DeleteConnection(int connectionID)
+        public IEnumerable<ConnectionListModel> GetConnections()
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<ConnectionListModel> GetConections()
-        {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Connections
+                        .Where(e => e.UserID == _userId)
+                        .Select(
+                            e =>
+                                new ConnectionListModel
+                                {
+                                    ConnectionID = e.ConnectionID,
+                                    ConnectionName = e.ConnectionName,
+                                    Job = e.Job,
+                                    Employer = e.Employer,
+                                    EventID = e.EventID
+                                }
+                        );
+                return query.ToArray();
+            }
         }
 
         public ConnectionDetailModel GetConnectionById(int connectionID)
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Connections
+                        .Single(e => e.ConnectionID == connectionID && e.UserID == _userId);
+
+                return
+                    new ConnectionDetailModel
+                    {
+                        ConnectionID = entity.ConnectionID,
+                        ConnectionName = entity.ConnectionName,
+                        Job = entity.Job,
+                        Employer = entity.Employer,
+                        Phone = entity.Phone,
+                        Email = entity.Email,
+                        Notes = entity.Notes
+                    };
+            }
         }
 
         public bool UpdateConnection(ConnectionEditModel model)
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Connections
+                        .Single(e => e.ConnectionID == model.ConnectionID && e.UserID == _userId);
+
+                entity.ConnectionName = model.ConnectionName;
+                entity.Job = model.Job;
+                entity.Employer = model.Employer;
+                entity.Phone = model.Phone;
+                entity.Email = model.Email;
+                entity.Notes = model.Notes;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteConnection(int connectionID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Connections
+                        .Single(e => e.ConnectionID == connectionID && e.UserID == _userId);
+
+                ctx.Connections.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
         }
     }
 }

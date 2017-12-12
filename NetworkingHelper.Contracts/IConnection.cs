@@ -10,7 +10,7 @@ namespace NetworkingHelper.Contracts
     public interface IConnection
     {
         bool CreateConnection(ConnectionCreateModel model);
-        IEnumerable<ConnectionListModel> GetConections();
+        IEnumerable<ConnectionListModel> GetConnections();
         ConnectionDetailModel GetConnectionById(int connectionID);
         bool UpdateConnection(ConnectionEditModel model);
         bool DeleteConnection(int connectionID);

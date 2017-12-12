@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NetworkingHelper.Data.ConnectionEntity>
+﻿@model IEnumerable<NetworkingHelper.Models.ConnectionModels.ConnectionListModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,12 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Events.EventName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ConnectionName)
         </th>
         <th>
@@ -26,26 +20,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Employer)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Events.EventName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ConnectionName)
         </td>
@@ -54,15 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Employer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ConnectionID }) |

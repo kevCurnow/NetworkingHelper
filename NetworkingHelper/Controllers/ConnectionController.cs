@@ -7,9 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NetworkingHelper.Data;
+using NetworkingHelper.Services;
+using Microsoft.AspNet.Identity;
+using NetworkingHelper.Models.ConnectionModels;
+
 
 namespace NetworkingHelper.Controllers
 {
+    [Authorize]
     public class ConnectionController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -17,29 +22,15 @@ namespace NetworkingHelper.Controllers
         // GET: Connection
         public ActionResult Index()
         {
-            var connections = db.Connections.Include(c => c.Events);
-            return View(connections.ToList());
-        }
+            var service = CreateConnectionService();
+            var model = service.GetConnections();
 
-        // GET: Connection/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ConnectionEntity connectionEntity = db.Connections.Find(id);
-            if (connectionEntity == null)
-            {
-                return HttpNotFound();
-            }
-            return View(connectionEntity);
+            return View(model);
         }
 
         // GET: Connection/Create
         public ActionResult Create()
         {
-            ViewBag.EventID = new SelectList(db.Events, "EventID", "EventName");
             return View();
         }
 
@@ -48,33 +39,40 @@ namespace NetworkingHelper.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ConnectionID,UserID,ConnectionName,Job,Employer,Phone,Email,Notes,EventID")] ConnectionEntity connectionEntity)
+        public ActionResult Create(ConnectionCreateModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+
+            var service = CreateConnectionService();
+
+            if (service.CreateConnection(model))
             {
-                db.Connections.Add(connectionEntity);
-                db.SaveChanges();
+                TempData["SaveResult"] = "Your connection was created.";
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventID = new SelectList(db.Events, "EventID", "EventName", connectionEntity.EventID);
-            return View(connectionEntity);
+            ModelState.AddModelError("", "Your connection could not be created.");
+            return View(model);
         }
 
         // GET: Connection/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ConnectionEntity connectionEntity = db.Connections.Find(id);
-            if (connectionEntity == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.EventID = new SelectList(db.Events, "EventID", "EventName", connectionEntity.EventID);
-            return View(connectionEntity);
+            var service = CreateConnectionService();
+            var detail = service.GetConnectionById(id);
+            var model =
+                new ConnectionEditModel
+                {
+                    ConnectionID = detail.ConnectionID,
+                    ConnectionName = detail.ConnectionName,
+                    Job = detail.Job,
+                    Employer = detail.Employer,
+                    Phone = detail.Phone,
+                    Email = detail.Phone,
+                    Notes = detail.Notes
+                };
+
+            return View(model);
         }
 
         // POST: Connection/Edit/5
@@ -82,31 +80,43 @@ namespace NetworkingHelper.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ConnectionID,UserID,ConnectionName,Job,Employer,Phone,Email,Notes,EventID")] ConnectionEntity connectionEntity)
+        public ActionResult Edit(int id, ConnectionEditModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.ConnectionID != id)
             {
-                db.Entry(connectionEntity).State = EntityState.Modified;
-                db.SaveChanges();
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+
+            var service = CreateConnectionService();
+
+            if (service.UpdateConnection(model))
+            {
+                TempData["SaveResult"] = "Your connection was updated";
                 return RedirectToAction("Index");
             }
-            ViewBag.EventID = new SelectList(db.Events, "EventID", "EventName", connectionEntity.EventID);
-            return View(connectionEntity);
+            ModelState.AddModelError("", "Your connection could not be updated.");
+            return View(model);
+        }
+
+        // GET: Connection/Details/5
+        public ActionResult Details(int id)
+        {
+            var svc = CreateConnectionService();
+            var model = svc.GetConnectionById(id);
+
+            return View(model);
         }
 
         // GET: Connection/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ConnectionEntity connectionEntity = db.Connections.Find(id);
-            if (connectionEntity == null)
-            {
-                return HttpNotFound();
-            }
-            return View(connectionEntity);
+            var svc = CreateConnectionService();
+            var model = svc.GetConnectionById(id);
+
+            return View(model);
         }
 
         // POST: Connection/Delete/5
@@ -114,9 +124,11 @@ namespace NetworkingHelper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ConnectionEntity connectionEntity = db.Connections.Find(id);
-            db.Connections.Remove(connectionEntity);
-            db.SaveChanges();
+            var service = CreateConnectionService();
+
+            service.DeleteConnection(id);
+
+            TempData["SaveResult"] = "Your connection was deleted!";
             return RedirectToAction("Index");
         }
 
@@ -127,6 +139,13 @@ namespace NetworkingHelper.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private ConnectionService CreateConnectionService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ConnectionService(userId);
+            return service;
         }
     }
 }
