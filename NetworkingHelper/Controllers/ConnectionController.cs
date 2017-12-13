@@ -20,10 +20,14 @@ namespace NetworkingHelper.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Connection
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var service = CreateConnectionService();
             var model = service.GetConnections();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(e => e.EventName.Contains(searchString));
+            }
 
             return View(model);
         }

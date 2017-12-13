@@ -35,7 +35,7 @@ namespace NetworkingHelper.Data
         public string Notes { get; set; }
 
         [Required]
-        public int EventID { get; set; }
+        public string EventName { get; set; }
 
         public virtual EventEntity Events { get; set; }
     }

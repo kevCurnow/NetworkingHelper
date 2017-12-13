@@ -258,15 +258,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Connection\Create.cshtml" />
-    <Content Include="Views\Connection\Delete.cshtml" />
     <Content Include="Views\Connection\Details.cshtml" />
     <Content Include="Views\Connection\Edit.cshtml" />
     <Content Include="Views\Connection\Index.cshtml" />
     <Content Include="Views\Event\Create.cshtml" />
-    <Content Include="Views\Event\Delete.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Connection\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
