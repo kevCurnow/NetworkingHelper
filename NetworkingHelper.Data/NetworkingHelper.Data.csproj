@@ -56,9 +56,9 @@
     <Compile Include="ConnectionEntity.cs" />
     <Compile Include="EventEntity.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201712112017032_AddedGuid.cs" />
-    <Compile Include="Migrations\201712112017032_AddedGuid.Designer.cs">
-      <DependentUpon>201712112017032_AddedGuid.cs</DependentUpon>
+    <Compile Include="Migrations\201712131444210_redoGuid.cs" />
+    <Compile Include="Migrations\201712131444210_redoGuid.Designer.cs">
+      <DependentUpon>201712131444210_redoGuid.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +68,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712112017032_AddedGuid.resx">
-      <DependentUpon>201712112017032_AddedGuid.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712131444210_redoGuid.resx">
+      <DependentUpon>201712131444210_redoGuid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
