@@ -10,6 +10,7 @@ using NetworkingHelper.Data;
 using NetworkingHelper.Services;
 using Microsoft.AspNet.Identity;
 using NetworkingHelper.Models.EventModels;
+using NetworkingHelper.Contracts;
 
 namespace NetworkingHelper.Controllers
 {
@@ -18,11 +19,24 @@ namespace NetworkingHelper.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private readonly Lazy<IEvent> _eventService;
+
+        public EventController()
+        {
+            _eventService = new Lazy<IEvent>(() =>
+                new EventService(Guid.Parse(User.Identity.GetUserId())));
+        }
+
+        public EventController(Lazy<IEvent> eventService)
+        {
+            _eventService = eventService;
+        }
+
         // GET: Event
         public ActionResult Index()
         {
-            var service = CreateEventService();
-            var model = service.GetEvents();
+            
+            var model = _eventService.Value.GetEvents();
 
             return View(model);
         }
@@ -42,9 +56,7 @@ namespace NetworkingHelper.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = CreateEventService();
-
-            if (service.CreateEvent(model))
+            if (_eventService.Value.CreateEvent(model))
             {
                 TempData["SaveResult"] = "Your event was created.";
                 return RedirectToAction("Index");
@@ -57,8 +69,8 @@ namespace NetworkingHelper.Controllers
         // GET: Event/Edit/5
         public ActionResult Edit(int id)
         {
-            var service = CreateEventService();
-            var detail = service.GetEventById(id);
+            
+            var detail = _eventService.Value.GetEventById(id);
             var model =
                 new EventEditModel
                 {
@@ -86,9 +98,7 @@ namespace NetworkingHelper.Controllers
                 return View(model);
             }
 
-            var service = CreateEventService();
-
-            if (service.UpdateEvent(model))
+            if (_eventService.Value.UpdateEvent(model))
             {
                 TempData["SaveResult"] = "Your event was updated";
                 return RedirectToAction("Index");
@@ -100,8 +110,8 @@ namespace NetworkingHelper.Controllers
         // GET: Event/Details/5
         public ActionResult Details(int id)
         {
-            var svc = CreateEventService();
-            var model = svc.GetEventById(id);
+            var model = _eventService.Value.
+                GetEventById(id);
             
             return View(model);
         }
@@ -109,8 +119,7 @@ namespace NetworkingHelper.Controllers
         // GET: Event/Delete/5
         public ActionResult Delete(int id)
         {
-            var svc = CreateEventService();
-            var model = svc.GetEventById(id);
+            var model = _eventService.Value.GetEventById(id);
 
             return View(model);
         }
@@ -120,9 +129,7 @@ namespace NetworkingHelper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var service = CreateEventService();
-
-            service.DeleteEvent(id);
+            _eventService.Value.DeleteEvent(id);
 
             TempData["SaveResult"] = "Your event was deleted!";
             return RedirectToAction("Index");
@@ -137,11 +144,6 @@ namespace NetworkingHelper.Controllers
             base.Dispose(disposing);
         }
 
-        private EventService CreateEventService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new EventService(userId);
-            return service;
-        }
+        
     }
 }
