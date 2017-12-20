@@ -29,7 +29,8 @@ namespace NetworkingHelper.Services
                     Employer = model.Employer,
                     Phone = model.Phone,
                     Email = model.Email,
-                    Notes = model.Notes
+                    Notes = model.Notes,
+                    EventName = model.EventName
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -56,7 +57,7 @@ namespace NetworkingHelper.Services
                                     ConnectionName = e.ConnectionName,
                                     Job = e.Job,
                                     Employer = e.Employer,
-                                    EventID = e.EventID
+                                    EventName = e.EventName
                                 }
                         );
                 return query.ToArray();
@@ -81,7 +82,8 @@ namespace NetworkingHelper.Services
                         Employer = entity.Employer,
                         Phone = entity.Phone,
                         Email = entity.Email,
-                        Notes = entity.Notes
+                        Notes = entity.Notes,
+                        EventName = entity.EventName
                     };
             }
         }

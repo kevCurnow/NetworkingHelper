@@ -27,5 +27,8 @@ namespace NetworkingHelper.Models.ConnectionModels
         [Required]
         public string Notes { get; set; }
 
+        [Required]
+        public string EventName { get; set; }
+
     }
 }

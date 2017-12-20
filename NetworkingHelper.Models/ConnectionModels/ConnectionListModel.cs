@@ -12,6 +12,6 @@ namespace NetworkingHelper.Models.ConnectionModels
         public string ConnectionName { get; set; }
         public string Job { get; set; }
         public string Employer { get; set; }
-        public int EventID { get; set; }
+        public string EventName { get; set; }
     }
 }

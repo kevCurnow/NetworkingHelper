@@ -4,13 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Connections</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by event: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ConnectionName)
         </th>
@@ -25,6 +37,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ConnectionName)
         </td>
