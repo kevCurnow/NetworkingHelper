@@ -1,0 +1,26 @@
+<h1>Delete</h1>
+<h4>Are you sure you want to delete this?</h4>
+
+<hr>
+<div *ngIf="event">
+  <div>
+    <label for="">EventID</label>
+    <span>{{event.EventID}}</span>
+  </div>
+  <div>
+    <label for="">EventName</label>
+    <span>{{event.EventName}}</span>
+  </div>
+  <div>
+    <label for="">EventDate</label>
+    <span>{{event.EventDate}}</span>
+  </div>
+  <div>
+    <label for="">EventLocation</label>
+    <span>{{event.EventLocation}}</span>
+  </div>
+</div>
+
+<button mat-button color="warn" (click)="onDelete()">Delete</button>
+<button mat-button color="primary" routerLink="/events">Back to List</button>
+
