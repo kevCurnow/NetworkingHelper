@@ -9,9 +9,11 @@ import {
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatTableModule
+  MatTableModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
 } from '@angular/material';
-
+import { CalendarModule } from 'primeng/calendar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -25,6 +27,7 @@ import { EventDetailComponent } from './components/event-detail/event-detail.com
 import { EventEditComponent } from './components/event/event-edit/event-edit.component';
 import { EventDeleteComponent } from './components/event/event-delete/event-delete.component';
 import { AuthGuard } from './guards/auth.guards';
+
 
 const routes = [
   { path: 'register', component: RegistrationComponent},
@@ -50,7 +53,7 @@ const routes = [
     EventCreateComponent,
     EventDetailComponent,
     EventEditComponent,
-    EventDeleteComponent
+    EventDeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,10 @@ const routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    CalendarModule,
   ],
   providers: [
     AuthService,

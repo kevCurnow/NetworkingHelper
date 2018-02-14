@@ -10,7 +10,9 @@
     </div>
     <div>
       <mat-form-field>
-        <input matInput placeholder="EventDate" formControlName="EventDate" type="EventDate" required/>
+        <input matInput [matDatepicker]="picker" placeholder="EventDate" formControlName="EventDate" type="EventDate" required/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
     <div>
