@@ -1,0 +1,56 @@
+<h1>Connections</h1>
+<a mat-raised-button color="primary" routerLink="/connections/create">Create New</a>
+<a mat-raised-button color="primary" routerLink="/events">Events</a>
+<hr>
+
+<div>
+  <mat-table #table [dataSource]="dataSource">
+    <mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnNames;"></mat-row>
+
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef class="matColumnSize"></mat-header-cell>
+      <mat-cell *matCellDef="let connection" routerLink ="/connections/detail/{{connection.ConnectionID}}"> 
+        <i class="material-icons">library_books</i>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ConnectionID">
+      <mat-header-cell *matHeaderCellDef> Connection ID </mat-header-cell>
+      <mat-cell *matCellDef="let connection"> {{connection.ConnectionID}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ConnectionName">
+      <mat-header-cell *matHeaderCellDef> Connection Name </mat-header-cell>
+      <mat-cell *matCellDef="let connection"> {{connection.ConnectionName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Job">
+      <mat-header-cell *matHeaderCellDef> Job </mat-header-cell>
+      <mat-cell *matCellDef="let connection"> {{connection.Job}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Employer">
+      <mat-header-cell *matHeaderCellDef> Employer </mat-header-cell>
+      <mat-cell *matCellDef="let connection"> {{connection.Employer}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Phone">
+      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+      <mat-cell *matCellDef="let connection"> {{connection.Phone}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let connection"> {{connection.Email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let connection">
+        <i mat-icon class="material-icons" routerLink="/connections/edit/{{connection.ConnectionID}}">edit</i>
+        <i class="material-icons" routerLink="/connections/delete/{{connection.ConnectionID}}">delete</i>
+    </mat-cell>
+    </ng-container>
+  </mat-table>
+</div>

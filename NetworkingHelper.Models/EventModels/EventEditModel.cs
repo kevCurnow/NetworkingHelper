@@ -16,6 +16,9 @@ namespace NetworkingHelper.Models.EventModels
         public DateTimeOffset EventDate { get; set; }
 
         [Required]
+        public string EventTime { get; set; }
+
+        [Required]
         public string EventLocation { get; set; }
 
         [Key]

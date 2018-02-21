@@ -1,6 +1,14 @@
 <mat-toolbar color="primary">
-  <span>Angular Connection Companion</span>
+  <span><img src="assets/minilogo.png"></span>
+  <button mat-button *ngIf="isLoggedIn" routerLink="/events">Events</button>
+  <button mat-button *ngIf="isLoggedIn" routerLink="/connections">Connections</button>
   <span class="example-fill-remaining-space"></span>
-  <button mat-raised-button class="nav-btn" routerLink="/register">Register</button>
-  <button mat-raised-button class="nav-btn" routerLink="/login">Login</button>
+  <button mat-raised-button class="nav-btn" routerLink="/register"
+    *ngIf="!isLoggedIn">Register</button>
+  <button mat-raised-button class="nav-btn" routerLink="/login"
+    *ngIf="!isLoggedIn">Login</button>
+  <form (ngSubmit)="onLogoutClicked()">
+    <button mat-raised-button class="nav-btn"
+      *ngIf="isLoggedIn" type="submit">Logout</button>
+  </form>
 </mat-toolbar>

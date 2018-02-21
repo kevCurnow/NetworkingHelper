@@ -1,5 +1,6 @@
-<h1>Index</h1>
+<h1>Events</h1>
 <a mat-raised-button color="primary" routerLink="/events/create">Create New</a>
+<a mat-raised-button color="primary" routerLink="/connections">Connections</a>
 <hr>
 
 <div>
@@ -27,6 +28,11 @@
     <ng-container matColumnDef="EventDate">
       <mat-header-cell *matHeaderCellDef> Event Date </mat-header-cell>
       <mat-cell *matCellDef="let event"> {{event.EventDate | date:'fullDate'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="EventTime">
+      <mat-header-cell *matHeaderCellDef> Event Time </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{event.EventTime}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="EventLocation">

@@ -12,21 +12,27 @@ import {
   MatTableModule,
   MatNativeDateModule,
   MatDatepickerModule,
+  MatSelectModule,
 } from '@angular/material';
-import { CalendarModule } from 'primeng/calendar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
+import { ConnectionsService } from './services/connections.service';
 import { EventsService } from './services/events.service';
 import { EventIndexComponent } from './components/event/event-index/event-index.component';
 import { EventCreateComponent } from './components/event/event-create/event-create.component';
-import { EventDetailComponent } from './components/event-detail/event-detail.component';
+import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
 import { EventEditComponent } from './components/event/event-edit/event-edit.component';
 import { EventDeleteComponent } from './components/event/event-delete/event-delete.component';
 import { AuthGuard } from './guards/auth.guards';
+import { ConnectionCreateComponent } from './components/connection/connection-create/connection-create.component';
+import { ConnectionDeleteComponent } from './components/connection/connection-delete/connection-delete.component';
+import { ConnectionEditComponent } from './components/connection/connection-edit/connection-edit.component';
+import { ConnectionDetailComponent } from './components/connection/connection-detail/connection-detail.component';
+import { ConnectionIndexComponent } from './components/connection/connection-index/connection-index.component';
 
 
 const routes = [
@@ -39,6 +45,14 @@ const routes = [
     { path: 'edit/:id', component: EventEditComponent},
     { path: 'delete/:id', component: EventDeleteComponent}
     ]
+  },
+  { path: 'connections', canActivate: [AuthGuard] , children: [
+    { path: '', component: ConnectionIndexComponent},
+    { path: 'create', component: ConnectionCreateComponent},
+    { path: 'detail/:id', component: ConnectionDetailComponent},
+    { path: 'edit/:id', component: ConnectionEditComponent},
+    { path: 'delete/:id', component: ConnectionDeleteComponent}
+  ]
   },
   { path: '**', component: RegistrationComponent}
 ];
@@ -54,6 +68,11 @@ const routes = [
     EventDetailComponent,
     EventEditComponent,
     EventDeleteComponent,
+    ConnectionCreateComponent,
+    ConnectionDeleteComponent,
+    ConnectionEditComponent,
+    ConnectionDetailComponent,
+    ConnectionIndexComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,12 +88,13 @@ const routes = [
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CalendarModule,
+    MatSelectModule,
   ],
   providers: [
     AuthService,
     EventsService,
-    AuthGuard
+    AuthGuard,
+    ConnectionsService,
   ],
   bootstrap: [AppComponent]
 })

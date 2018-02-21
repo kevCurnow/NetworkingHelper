@@ -30,5 +30,6 @@ export class RegistrationComponent implements OnInit {
     this._authService
     .register(this._registerForm.value)
     .subscribe ( () => this._authService.login(this._registerForm.value));
+    // window.location.reload();
   }
 }

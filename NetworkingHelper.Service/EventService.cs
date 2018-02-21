@@ -26,6 +26,7 @@ namespace NetworkingHelper.Services
                     UserID = _userId,
                     EventName = model.EventName,
                     EventDate = model.EventDate,
+                    EventTime = model.EventTime,
                     EventLocation = model.EventLocation,
                 };
 
@@ -52,6 +53,7 @@ namespace NetworkingHelper.Services
                                     EventID = e.EventID,
                                     EventName = e.EventName,
                                     EventDate = e.EventDate,
+                                    EventTime = e.EventTime,
                                     EventLocation = e.EventLocation
                                 }
                         );
@@ -75,6 +77,7 @@ namespace NetworkingHelper.Services
                         EventID = entity.EventID,
                         EventName = entity.EventName,
                         EventDate = entity.EventDate,
+                        EventTime = entity.EventTime,
                         EventLocation = entity.EventLocation
                     };
             }
@@ -91,6 +94,7 @@ namespace NetworkingHelper.Services
 
                 entity.EventName = model.EventName;
                 entity.EventDate = model.EventDate;
+                entity.EventTime = model.EventTime;
                 entity.EventLocation = model.EventLocation;
 
                 return ctx.SaveChanges() == 1;

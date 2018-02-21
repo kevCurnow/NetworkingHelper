@@ -15,6 +15,6 @@ namespace NetworkingHelper.Models.ConnectionModels
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Notes { get; set; }
-        public string EventName { get; set; }
+        public int EventID { get; set; }
     }
 }

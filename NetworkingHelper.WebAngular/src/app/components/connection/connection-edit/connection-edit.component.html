@@ -1,0 +1,52 @@
+<h1>Edit a connection.</h1>
+<hr>
+
+<div *ngIf="connection">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="editConnectionForm">
+    <div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="ConnectionName" formControlName="ConnectionName" type="ConnectionName" required [value]="connection.ConnectionId"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Job" formControlName="Job" type="Job" required [value]="connection.Job" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Employer" formControlName="Employer" type="Employer" required [value]="connection.Employer"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Phone" formControlName="Phone" type="Phone" required [value]="connection.Phone" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="Email" type="Email" required [value]="connection.Email"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Notes" formControlName="Notes" type="Notes" required />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <label>Event ID:</label>
+          <select [(ngModel)]="selectedEvent.EventID" (change)="onSelect($event.target.value)">
+            <option value="0">--Select--</option>
+            <option *ngFor="let eevent of events" value={{eevent.EventID}}>{{eevent.EventID}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button class="nav-btn" color="primary" type="submit">Save</button>
+  </form>
+</div>
+<a mat-button routerLink="/connections">Back to List</a>

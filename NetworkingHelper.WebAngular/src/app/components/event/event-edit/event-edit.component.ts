@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { EventsService } from '../../../services/events.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Networking } from '../../../models/Networking';
+import { NetworkingE } from '../../../models/NetworkingE';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Networking } from '../../../models/Networking';
 })
 export class EventEditComponent implements OnInit {
 
-  event: Networking;
+  event: NetworkingE;
 
   private editEventForm: FormGroup;
   constructor(private _form: FormBuilder,
@@ -21,7 +21,7 @@ export class EventEditComponent implements OnInit {
               private _router: Router) { 
     
     this._ar.paramMap.subscribe(p => {
-      this._eventService.getEvent(p.get('id')).subscribe((singleEvent: Networking) => {
+      this._eventService.getEvent(p.get('id')).subscribe((singleEvent: NetworkingE) => {
         this.event = singleEvent;
         this.createForm();
       });
@@ -36,15 +36,17 @@ export class EventEditComponent implements OnInit {
       EventID: new FormControl(this.event.EventID),
       EventName: new FormControl(this.event.EventName),
       EventDate: new FormControl(this.event.EventDate),
+      EventTime: new FormControl(this.event.EventTime),
       EventLocation: new FormControl(this.event.EventLocation)
     });
   }
 
   onSubmit(form) {
-    const updateNetworking: Networking = {
+    const updateNetworking: NetworkingE = {
       EventID: form.value.EventID,
       EventName: form.value.EventName,
       EventDate: form.value.EventDate,
+      EventTime: form.value.EventTime,
       EventLocation: form.value.EventLocation
     };
     this._eventService.updateNetworking(updateNetworking).subscribe(d => {

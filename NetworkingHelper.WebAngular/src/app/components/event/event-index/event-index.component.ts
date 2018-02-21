@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../../services/events.service';
-import { Networking } from '../../../models/Networking';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { NetworkingE } from '../../../models/NetworkingE';
 
 @Component({
   selector: 'app-event-index',
@@ -12,15 +12,17 @@ import 'rxjs/add/observable/of';
 })
 export class EventIndexComponent implements OnInit {
 
-  events: Event[];
-  columnNames = ['details', 'EventID', 'EventName', 'EventDate', 'EventLocation', 'buttons'];
+  events: NetworkingE[];
+  columnNames = ['details', 'EventID', 'EventName', 'EventDate', 'EventTime', 'EventLocation', 'buttons'];
   dataSource: EventDataSource | null;
 
   constructor(private _eventService: EventsService) { }
 
   ngOnInit() {
-    this._eventService.getEvents().subscribe((events: Event[]) => {
+    this._eventService.getEvents().subscribe((events: NetworkingE[]) => {
+      this.events = events;
       this.dataSource = new EventDataSource(events);
+      // window.location.reload();
     });
   }
 
@@ -28,11 +30,11 @@ export class EventIndexComponent implements OnInit {
 
 export class EventDataSource extends DataSource<any> {
 
-  constructor(private eventsData: Event[]) {
+  constructor(private eventsData: NetworkingE[]) {
     super();
   }
 
-  connect(): Observable<Event[]> {
+  connect(): Observable<NetworkingE[]> {
     return Observable.of(this.eventsData);
   }
 
