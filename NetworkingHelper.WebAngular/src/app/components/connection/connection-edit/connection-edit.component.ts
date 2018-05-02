@@ -36,33 +36,32 @@ export class ConnectionEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._eventService.getEvents().subscribe((events: NetworkingE[]) => {
-      this.events = events;
-      this.dataSource = new EventsDataSource(events);
-    });
+   
   }
 
   createForm() {
     this.editConnectionForm = this._form.group({
+      ConnectionID: new FormControl(this.connection.ConnectionID),
       ConnectionName: new FormControl(this.connection.ConnectionName),
       Job: new FormControl(this.connection.Job),
       Employer: new FormControl(this.connection.Employer),
       Phone: new FormControl(this.connection.Phone),
       Email: new FormControl(this.connection.Email),
       Notes: new FormControl(this.connection.Notes),
-      EventID: new FormControl(this.connection.EventID)
+      EventMet: new FormControl(this.connection.EventMet)
     });
   }
 
   onSubmit(form) {
     const updateNetworking: NetworkingC = {
+      ConnectionID: form.value.ConnectionID,
       ConnectionName: form.value.ConnectionName,
       Job: form.value.Job,
       Employer: form.value.Employer,
       Phone: form.value.Phone,
       Email: form.value.Email,
       Notes: form.value.Notes,
-      EventID: form.value.EventID
+      EventMet: form.value.EventMet
     };
     this._connectionService.updateNetworking(updateNetworking).subscribe(d => {
       this._router.navigate(['/connections']);

@@ -11,6 +11,7 @@ import { EventsService } from '../../../services/events.service';
 export class EventDetailComponent implements OnInit {
 
   event: NetworkingE;
+  
 
   constructor(private _activatedRoute: ActivatedRoute, private _eventService: EventsService) { }
 

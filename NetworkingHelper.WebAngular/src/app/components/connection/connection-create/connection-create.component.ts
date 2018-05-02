@@ -27,13 +27,13 @@ export class ConnectionCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._eventService.getEvents().subscribe((events: NetworkingE[]) => {
-      this.events = [];
-      Object.keys(events).forEach((eachEvent) => {
-        this.events.push(events[eachEvent])
-      })
-      this.dataSource = new EventsDataSource(events);
-    });
+    // this._eventService.getEvents().subscribe((events: NetworkingE[]) => {
+    //   this.events = [];
+    //   Object.keys(events).forEach((eachEvent) => {
+    //     this.events.push(events[eachEvent])
+    //   })
+    //   this.dataSource = new EventsDataSource(events);
+    // });
   }
 
   createForm() {
@@ -44,7 +44,7 @@ export class ConnectionCreateComponent implements OnInit {
       Phone: new FormControl,
       Email: new FormControl,
       Notes: new FormControl,
-      EventID: new FormControl
+      EventMet: new FormControl
     });
   }
 

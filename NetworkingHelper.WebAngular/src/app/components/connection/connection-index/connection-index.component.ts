@@ -12,7 +12,7 @@ import { NetworkingC } from '../../../models/NetworkingC';
 })
 export class ConnectionIndexComponent implements OnInit {
 
-  connections: NetworkingC;
+  connections: NetworkingC[];
   columnNames = ['details', 'ConnectionID', 'ConnectionName', 'Job', "Employer", "Phone", "Email", "buttons"];
   dataSource: ConnectionDataSource | null;
 
@@ -20,6 +20,7 @@ export class ConnectionIndexComponent implements OnInit {
 
   ngOnInit() {
     this._connectionService.getConnections().subscribe((connections: NetworkingC[]) => {
+      this.connections = connections;
       this.dataSource = new ConnectionDataSource(connections);
       // window.location.reload();
     });

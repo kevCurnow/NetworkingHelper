@@ -1,5 +1,5 @@
 export interface NetworkingE {
-    EventID: number;
+    EventID?: number;
     UserID?: number;
     EventName: string;
     EventDate: Date;

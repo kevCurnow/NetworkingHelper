@@ -34,11 +34,14 @@
       </mat-form-field>
     </div>
     <div>
-        <label>Event ID:</label>
+      <mat-form-field>
+        <input matInput placeholder="EventMet" formControlName="EventMet" type="EventMet" required />
+      </mat-form-field>  
+      <!-- <label>Event ID:</label>
         <select [(ngModel)]="selectedEvent.EventID" (change)="onSelect($event.target.value)">
           <option value="0">--Select--</option>
           <option *ngFor="let eevent of events" value={{eevent.EventID}}>{{eevent.EventID}}</option>
-        </select>
+        </select> -->
     </div>
   </div>
   <button mat-raised-button class="nav-btn" color="primary" type="submit">Create Connection</button>

@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-  <span><img src="assets/minilogo.png"></span>
+  <button mat-button id="title-btn" routerLink="/"><img src="assets/minilogo.png" alt="mini logo"></button>
+  <button mat-button routerLink="/feedback">Feedback</button>
   <button mat-button *ngIf="isLoggedIn" routerLink="/events">Events</button>
   <button mat-button *ngIf="isLoggedIn" routerLink="/connections">Connections</button>
   <span class="example-fill-remaining-space"></span>

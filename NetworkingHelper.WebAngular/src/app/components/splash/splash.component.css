@@ -1,0 +1,19 @@
+.mainlogo{
+    width: 30%;
+    margin: auto;
+    padding-left: 35%;
+    padding-right: 35%;
+    /* padding-top: 0px; */
+}
+
+.info{
+    padding: 20px;
+}
+
+h3 {
+    font-size: 125%;
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    color: #000000;
+}

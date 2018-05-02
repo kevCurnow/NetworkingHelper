@@ -3,7 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { 
   MatToolbarModule, 
   MatButtonModule,
@@ -33,9 +34,13 @@ import { ConnectionDeleteComponent } from './components/connection/connection-de
 import { ConnectionEditComponent } from './components/connection/connection-edit/connection-edit.component';
 import { ConnectionDetailComponent } from './components/connection/connection-detail/connection-detail.component';
 import { ConnectionIndexComponent } from './components/connection/connection-index/connection-index.component';
+import { SplashComponent } from './components/splash/splash.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 
 const routes = [
+  { path: '', component: SplashComponent},
+  { path: 'feedback', component: FeedbackComponent},
   { path: 'register', component: RegistrationComponent},
   { path: 'login', component: LoginComponent},
   { path: 'events', canActivate: [AuthGuard] , children: [
@@ -54,7 +59,7 @@ const routes = [
     { path: 'delete/:id', component: ConnectionDeleteComponent}
   ]
   },
-  { path: '**', component: RegistrationComponent}
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -73,8 +78,11 @@ const routes = [
     ConnectionEditComponent,
     ConnectionDetailComponent,
     ConnectionIndexComponent,
+    SplashComponent,
+    FeedbackComponent,
   ],
   imports: [
+    AngularFontAwesomeModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

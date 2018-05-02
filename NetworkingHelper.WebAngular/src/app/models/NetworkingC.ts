@@ -7,5 +7,5 @@ export interface NetworkingC {
     Phone: string;
     Email: string;
     Notes: string;
-    EventID: number;
+    EventMet: string;
 }
