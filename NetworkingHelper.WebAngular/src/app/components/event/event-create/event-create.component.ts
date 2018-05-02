@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',
-  styleUrls: ['./event-create.component.css']
+  styleUrls: ['./event-create.component.css'],
+  providers: [EventsService]
 })
 export class EventCreateComponent implements OnInit {
 
@@ -23,6 +24,7 @@ export class EventCreateComponent implements OnInit {
     this.eventForm = this._form.group({
       EventName: new FormControl,
       EventDate: new FormControl,
+      EventTime: new FormControl,
       EventLocation: new FormControl
     });
   }

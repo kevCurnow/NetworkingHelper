@@ -15,10 +15,14 @@
     <span>{{event.EventDate | date: 'fullDate'}}</span>
   </div>
   <div>
+    <label for="">EventTime:</label>
+    <span>{{event.EventTime}}</span>
+  </div>
+  <div>
     <label for="">EventLocation:</label>
     <span>{{event.EventLocation}}</span>
   </div>
 </div>
 
-<button mat-button color="accent" routerLink="/events/edit/{{event.EventID}}">Edit</button>
+<button mat-button color="accent">Edit</button>
 <button mat-button color="primary" routerLink="/events">Back to List</button>

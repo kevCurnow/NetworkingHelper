@@ -30,7 +30,7 @@ namespace NetworkingHelper.Services
                     Phone = model.Phone,
                     Email = model.Email,
                     Notes = model.Notes,
-                    EventName = model.EventName
+                    EventID = model.EventID
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -57,7 +57,7 @@ namespace NetworkingHelper.Services
                                     ConnectionName = e.ConnectionName,
                                     Job = e.Job,
                                     Employer = e.Employer,
-                                    EventName = e.EventName
+                                    EventID = e.EventID
                                 }
                         );
                 return query.ToArray();
@@ -83,7 +83,7 @@ namespace NetworkingHelper.Services
                         Phone = entity.Phone,
                         Email = entity.Email,
                         Notes = entity.Notes,
-                        EventName = entity.EventName
+                        EventID = entity.EventID
                     };
             }
         }
@@ -103,6 +103,7 @@ namespace NetworkingHelper.Services
                 entity.Phone = model.Phone;
                 entity.Email = model.Email;
                 entity.Notes = model.Notes;
+                entity.EventID = model.EventID;
 
                 return ctx.SaveChanges() == 1;
             }
